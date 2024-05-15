@@ -1,7 +1,7 @@
 # AdvancedElevatorSystem
 ## Overview
 > Advanced elevator system for Godot 4
-> This is best suited for elevators in proceduarlly-generated worlds.
+> This is best suited for elevators in procedurally-generated worlds.
 
 ## How to use.
 > You need to create up to three points (only one point is required - destination_point) for 1 floor.
