@@ -1,26 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbhkn6wq5vge6"]
+[gd_scene load_steps=5 format=3 uid="uid://dbhkn6wq5vge6"]
 
-[ext_resource type="PackedScene" uid="uid://cfy6bi30bslmr" path="res://Assets/Models/Elevator/elevator.tscn" id="1_k53e5"]
-[ext_resource type="Script" path="res://Scripts/ElevatorSystem/ElevatorFloor.gd" id="2_q7bwe"]
+[ext_resource type="PackedScene" uid="uid://b53yrihrlye07" path="res://DynamicObjects/Vehicles/elevator.tscn" id="2_gxb1y"]
 [ext_resource type="PackedScene" uid="uid://cu440emlhve1m" path="res://FPSController/PlayerScene.tscn" id="3_udcy6"]
-
-[sub_resource type="Resource" id="Resource_s8b6j"]
-script = ExtResource("2_q7bwe")
-destination_point = "/root/Test/3/Marker3D"
-up_helper_point = ""
-down_helper_point = ""
-
-[sub_resource type="Resource" id="Resource_t2beu"]
-script = ExtResource("2_q7bwe")
-destination_point = "/root/Test/1/Marker3D"
-up_helper_point = ""
-down_helper_point = ""
-
-[sub_resource type="Resource" id="Resource_vcrwt"]
-script = ExtResource("2_q7bwe")
-destination_point = "/root/Test/2/Marker3D"
-up_helper_point = ""
-down_helper_point = ""
 
 [sub_resource type="BoxMesh" id="BoxMesh_h22e4"]
 
@@ -29,11 +10,8 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="Test" type="Node3D"]
 
-[node name="Elevator" parent="." instance=ExtResource("1_k53e5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.675626, 2.36885)
-floors = Array[ExtResource("2_q7bwe")]([SubResource("Resource_s8b6j"), SubResource("Resource_t2beu"), SubResource("Resource_vcrwt")])
-speed = 3.0
-current_floor = 1
+[node name="elevator" parent="." instance=ExtResource("2_gxb1y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.675626, 2.38163)
 
 [node name="1" type="Node3D" parent="."]
 
@@ -48,30 +26,30 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_m3aqn")
 
 [node name="Marker3D" type="Marker3D" parent="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675626, 2.36885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675626, 2.38163)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="1"]
 transform = Transform3D(1, 0, 0, 0, 0.819622, 0.572904, 0, -0.572904, 0.819622, 0, 8.41839, 17.0414)
 light_color = Color(0, 1, 0, 1)
 spot_range = 15.9537
 
-[node name="3" type="Node3D" parent="."]
+[node name="0" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.1616, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="0"]
 transform = Transform3D(46.4045, 0, 0, 0, 1, 0, 0, 0, 42.028, 0, 0, 26.8645)
 mesh = SubResource("BoxMesh_h22e4")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="3/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="0/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="0/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_m3aqn")
 
-[node name="Marker3D" type="Marker3D" parent="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675626, 2.36885)
+[node name="Marker3D" type="Marker3D" parent="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676, 2.382)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="3"]
+[node name="SpotLight3D" type="SpotLight3D" parent="0"]
 transform = Transform3D(1, 0, 0, 0, 0.819622, 0.572904, 0, -0.572904, 0.819622, 0, 8.41839, 17.0414)
 light_color = Color(1, 0, 0, 1)
 spot_range = 15.9537
@@ -90,7 +68,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_m3aqn")
 
 [node name="Marker3D" type="Marker3D" parent="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675626, 2.36885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676, 2.382)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="2"]
 transform = Transform3D(1, 0, 0, 0, 0.819622, 0.572904, 0, -0.572904, 0.819622, 0, 8.41839, 17.0414)
@@ -99,3 +77,24 @@ spot_range = 15.9537
 
 [node name="Player" parent="." instance=ExtResource("3_udcy6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10267, 8.40894)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2

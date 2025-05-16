@@ -1,6 +1,10 @@
-extends InteractableNode
+extends InteractableStatic
+## Made by Yni, licensed under CC0.
+## Used for elevator calling
 
+## Elevator path
 @export var path: String
+## Elevator floor
 @export var floor: int
 
 func interact(player: Node3D):

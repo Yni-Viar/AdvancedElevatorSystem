@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ElevatorFloor" load_steps=2 format=3 uid="uid://d0mqhu71lkjsp"]
+
+[ext_resource type="Script" uid="uid://7ag6n6s5rw1m" path="res://Scripts/ElevatorSystem/ElevatorFloor.gd" id="1_eahyu"]
+
+[resource]
+script = ExtResource("1_eahyu")
+destination_point = "/root/Test/2/Marker3D"
+up_helper_point = ""
+down_helper_point = ""
+metadata/_custom_type_script = "uid://7ag6n6s5rw1m"

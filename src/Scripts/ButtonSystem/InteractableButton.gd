@@ -1,5 +1,6 @@
-extends InteractableNode
-
+extends InteractableStatic
+## Made by Yni, licensed under CC0.
+## Button
 
 func interact(player: Node3D):
 	if get_parent().has_method("interact"):

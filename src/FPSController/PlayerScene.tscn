@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu440emlhve1m"]
 
-[ext_resource type="Script" path="res://FPSController/PlayerScript.gd" id="1_rticr"]
+[ext_resource type="Script" uid="uid://cpl8j2t56hxlb" path="res://FPSController/PlayerScript.gd" id="1_rticr"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.371158
@@ -10,10 +10,7 @@ height = 2.64793
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_rticr")
-speed = 4.5
-jump = 4.5
 sprint_enabled = true
-can_move = true
 
 [node name="PlayerModel" type="Node3D" parent="."]
 
