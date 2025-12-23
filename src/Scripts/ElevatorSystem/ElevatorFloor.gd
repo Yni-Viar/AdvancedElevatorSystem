@@ -3,6 +3,9 @@ extends Resource
 class_name ElevatorFloor
 ## Made by Yni, licensed under MIT License.
 
+# /!\ Warning!!! All point nodes must be rotated to face exits.
+# For example, if elevator points to exit at 90 degrees, then point nodes must be also 90 degrees.
+
 @export var destination_point: String
 @export var up_helper_point: String
 @export var down_helper_point: String

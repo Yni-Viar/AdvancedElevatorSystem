@@ -11,7 +11,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [node name="Test" type="Node3D"]
 
 [node name="elevator" parent="." instance=ExtResource("2_gxb1y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.675626, 2.38163)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.675626, 2.38163)
 
 [node name="1" type="Node3D" parent="."]
 
@@ -26,7 +26,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_m3aqn")
 
 [node name="Marker3D" type="Marker3D" parent="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675626, 2.38163)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.675626, 2.38163)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="1"]
 transform = Transform3D(1, 0, 0, 0, 0.819622, 0.572904, 0, -0.572904, 0.819622, 0, 8.41839, 17.0414)
@@ -47,7 +47,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_m3aqn")
 
 [node name="Marker3D" type="Marker3D" parent="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676, 2.382)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.676, 2.382)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="0"]
 transform = Transform3D(1, 0, 0, 0, 0.819622, 0.572904, 0, -0.572904, 0.819622, 0, 8.41839, 17.0414)
@@ -68,7 +68,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_m3aqn")
 
 [node name="Marker3D" type="Marker3D" parent="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676, 2.382)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.676, 2.382)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="2"]
 transform = Transform3D(1, 0, 0, 0, 0.819622, 0.572904, 0, -0.572904, 0.819622, 0, 8.41839, 17.0414)

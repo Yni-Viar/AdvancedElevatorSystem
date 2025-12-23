@@ -12,8 +12,10 @@ var last_move: LastMove = LastMove.UP
 @export var floors : Array[ElevatorFloor]
 ## Elevator's external doors
 @export var elevator_doors : PackedStringArray
-## Elevator speed
-@export var speed: float = 2
+## Elevator move speed
+@export var speed: float = 2.0
+## Elevator rotation speed
+@export var rotation_speed: float = 0.5
 ## Check if moving, automatic
 @export var is_moving: bool = false
 ## Sounds, that will played, when door is opened.
@@ -32,17 +34,15 @@ var last_move: LastMove = LastMove.UP
 @export var locked: bool = false
 ## Use only if you set navigation
 @export var navigation_link: NodePath
-## Use only if you set navigation
-@export var navigation_region: NodePath
 var counter: int = 0
 var pass_floor: bool = false
-var default_rotation: Vector3
+#var default_rotation: Vector3
 ## For checking difference between rotation
 var rotator: Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	default_rotation = rotation
+	global_rotation = get_node(floors[current_floor].destination_point).global_rotation
 	rotator = global_rotation
 	if !is_moving:
 		if !elevator_doors.is_empty():
@@ -58,10 +58,14 @@ func _physics_process(delta):
 	if waypoints != null:
 		if is_moving && waypoints.size() > 0:
 			global_position = global_position.move_toward(waypoints[counter][0], speed * delta)
-			if waypoints[counter][1] == default_rotation:
-				global_rotation = global_rotation.move_toward(waypoints[counter][1], speed * delta)
-			else:
-				global_rotation = global_rotation.move_toward(waypoints[counter][1] + default_rotation, speed * delta)
+			if !global_rotation.is_equal_approx(waypoints[counter][1]):
+				#if default_rotation.is_equal_approx(Vector3.ZERO):
+				var rotation_result = -(TAU - waypoints[counter][1].y) if waypoints[counter][1].y >= PI else waypoints[counter][1].y
+				global_rotation = global_rotation.move_toward(Vector3(0, rotation_result, 0), rotation_speed * delta)# if global_rotation.y < rotation_result else -rotation_speed * delta)
+				#else:
+					#var radian_rotation = waypoints[counter][1].y + default_rotation.y
+					#var rotation_result = -(TAU - radian_rotation) if radian_rotation >= PI else radian_rotation
+					#global_rotation = global_rotation.move_toward(waypoints[counter][1] + default_rotation, rotation_speed * delta if global_rotation.y < rotation_result else -rotation_speed * delta)
 			for i in range(objects_to_teleport.size()):
 				var node: Node3D = get_node(objects_to_teleport[i])
 				node.global_rotation = node.global_rotation + (global_rotation - rotator)
@@ -104,6 +108,7 @@ func door_open():
 	if !open_door_sounds.is_empty():
 		$DoorSound.stream = load(open_door_sounds[rng.randi_range(0, open_door_sounds.size() - 1)])
 		$DoorSound.play()
+
 # Closes the door
 func door_close():
 	var rng = RandomNumberGenerator.new()
@@ -125,6 +130,7 @@ func call_elevator(floor):
 		elevator_move(false, true)
 	else:
 		elevator_move(true, true)
+
 func elevator_move(p_pass_floor: bool, first : bool):
 	pass_floor = p_pass_floor
 	if first:
@@ -141,6 +147,7 @@ func elevator_move(p_pass_floor: bool, first : bool):
 		#check if lower point of next floor exist
 		if (floors[floor].down_helper_point != ""):
 			waypoints.append([get_node(floors[floor].down_helper_point).global_position, get_node(floors[floor].down_helper_point).global_rotation])
+		
 		waypoints.append([get_node(floors[floor].destination_point).global_position, get_node(floors[floor].destination_point).global_rotation])
 		current_floor = floor
 	elif (target_floor > current_floor):
@@ -153,6 +160,7 @@ func elevator_move(p_pass_floor: bool, first : bool):
 		if (floors[floor].up_helper_point != ""):
 			waypoints.append([get_node(floors[floor].up_helper_point).global_position, get_node(floors[floor].up_helper_point).global_rotation])
 		waypoints.append([get_node(floors[floor].destination_point).global_position, get_node(floors[floor].destination_point).global_rotation])
+		
 		current_floor = floor
 	is_moving = true
 	if !$Move.playing:
@@ -180,6 +188,7 @@ func on_player_area_body_entered(body):
 func on_player_area_body_exited(body):
 	if body is PlayerScript:# || body is MovableNpc  || body is Pickable:
 		call("remove_object", body.get_path())
+
 
 func add_object(body):
 	#if get_node(body) is MovableNpc:
